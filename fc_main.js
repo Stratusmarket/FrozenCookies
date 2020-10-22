@@ -556,17 +556,17 @@ function updateFarmMax(base) {
 }
 
 function getGrandmaMax(current) {
-    var newMax2 = prompt('How many Grandmas should Autobuy stop at?', current);
-    if (typeof(newMax2) == 'undefined' || newMax2 == null || isNaN(Number(newMax2)) || Number(newMax2 < 0)) {
-        newMax2 = current;
+    var newMax3 = prompt('How many Grandmas should Autobuy stop at?', current);
+    if (typeof(newMax3) == 'undefined' || newMax3 == null || isNaN(Number(newMax3)) || Number(newMax3 < 0)) {
+        newMax3 = current;
     }
-    return Number(newMax2);
+    return Number(newMax3);
 }
 
 function updateGrandmaMax(base) {
-    var newMax2 = getGrandmaMax(FrozenCookies[base]);
-    if (newMax2 != FrozenCookies[base]) {
-        FrozenCookies[base] = newMax2;
+    var newMax3 = getGrandmaMax(FrozenCookies[base]);
+    if (newMax3 != FrozenCookies[base]) {
+        FrozenCookies[base] = newMax3;
         updateLocalStorage();
         FCStart();
     }
@@ -1308,7 +1308,7 @@ function recommendationList(recalculate) {
 
         if (FrozenCookies.grandmaLimit && Game.Objects['Grandma'].amount >= FrozenCookies.grandmaMax) {
             for (var i = 0; i < FrozenCookies.caches.recommendationList.length; i++) {
-                if (FrozenCookies.caches.recommendationList[i].id == 2) {
+                if (FrozenCookies.caches.recommendationList[i].id == 1) {
                     FrozenCookies.caches.recommendationList.splice(i, 1);
                 }
             }
