@@ -68,6 +68,12 @@ FrozenCookies.preferenceValues = {
         'default': 0,
         'extras': '<a class="option" id="farmMax" onclick="updateFarmMax(\'farmMax\');">${farmMax} farms</a>'
     },
+    'grandmaLimit': {
+        'hint': 'Limit max number of grandma to keep Godzamok useful',
+        'display': ['Grandma Limit OFF', 'Grandma Limit ON'],
+        'default': 0,
+        'extras': '<a class="option" id="grandmaMax" onclick="updateGrandmaMax(\'grandmaMax\');">${grandmaMax} grandmas</a>'
+    },
     'towerLimit': {
         'hint': 'Stop autobuying Wizard Towers at selected Max Mana, for spellcasting efficiency',
         'display': ['Wizard Tower Cap OFF', 'Wizard Tower Cap ON'],
