@@ -2199,7 +2199,7 @@ function autoGSBuy() {
     } else if (cpsBonus() <= 1) {
         if (Game.Upgrades['Golden switch [on]'].unlocked &&
             !Game.Upgrades['Golden switch [on]'].bought) {
-            Game.CalculateGains(); // Ensure price is updated since Frenzy ended
+            //Game.CalculateGains(); // Ensure price is updated since Frenzy ended
             Game.Upgrades['Golden switch [on]'].buy();
         }
     }
