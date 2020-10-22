@@ -30,6 +30,7 @@ function setOverrides() {
     FrozenCookies.minCpSMult = preferenceParse('minCpSMult', 1);
     FrozenCookies.cursorMax = preferenceParse('cursorMax', 500);
     FrozenCookies.farmMax = preferenceParse('farmMax', 500);
+    FrozenCookies.grandmaMax = preferenceParse('grandmaMax', 500);
     FrozenCookies.manaMax = preferenceParse('manaMax', 100);
     FrozenCookies.maxSpecials = preferenceParse('maxSpecials', 1);
 
@@ -349,6 +350,7 @@ function updateLocalStorage() {
     localStorage.HCAscendAmount = FrozenCookies.HCAscendAmount;
     localStorage.cursorMax = FrozenCookies.cursorMax;
     localStorage.farmMax = FrozenCookies.farmMax;
+    localStorage.grandmaMax = FrozenCookies.grandmaMax;
     localStorage.minCpSMult = FrozenCookies.minCpSMult;
     localStorage.frenzyTimes = JSON.stringify(FrozenCookies.frenzyTimes);
     //  localStorage.nonFrenzyTime = FrozenCookies.non_gc_time;
@@ -546,6 +548,23 @@ function getFarmMax(current) {
 
 function updateFarmMax(base) {
     var newMax2 = getFarmMax(FrozenCookies[base]);
+    if (newMax2 != FrozenCookies[base]) {
+        FrozenCookies[base] = newMax2;
+        updateLocalStorage();
+        FCStart();
+    }
+}
+
+function getGrandmaMax(current) {
+    var newMax2 = prompt('How many Grandmas should Autobuy stop at?', current);
+    if (typeof(newMax2) == 'undefined' || newMax2 == null || isNaN(Number(newMax2)) || Number(newMax2 < 0)) {
+        newMax2 = current;
+    }
+    return Number(newMax2);
+}
+
+function updateGrandmaMax(base) {
+    var newMax2 = getGrandmaMax(FrozenCookies[base]);
     if (newMax2 != FrozenCookies[base]) {
         FrozenCookies[base] = newMax2;
         updateLocalStorage();
@@ -1280,6 +1299,14 @@ function recommendationList(recalculate) {
         }
 	//Stop buying Farms if at set limit
         if (FrozenCookies.farmLimit && Game.Objects['Farm'].amount >= FrozenCookies.farmMax) {
+            for (var i = 0; i < FrozenCookies.caches.recommendationList.length; i++) {
+                if (FrozenCookies.caches.recommendationList[i].id == 2) {
+                    FrozenCookies.caches.recommendationList.splice(i, 1);
+                }
+            }
+        }
+
+        if (FrozenCookies.grandmaLimit && Game.Objects['Grandma'].amount >= FrozenCookies.grandmaMax) {
             for (var i = 0; i < FrozenCookies.caches.recommendationList.length; i++) {
                 if (FrozenCookies.caches.recommendationList[i].id == 2) {
                     FrozenCookies.caches.recommendationList.splice(i, 1);
