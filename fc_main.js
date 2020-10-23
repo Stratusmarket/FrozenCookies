@@ -31,6 +31,7 @@ function setOverrides() {
     FrozenCookies.cursorMax = preferenceParse('cursorMax', 500);
     FrozenCookies.farmMax = preferenceParse('farmMax', 500);
     FrozenCookies.grandmaMax = preferenceParse('grandmaMax', 500);
+    FrozenCookies.javaMax = preferenceParse('javaMax', 500);
     FrozenCookies.manaMax = preferenceParse('manaMax', 100);
     FrozenCookies.maxSpecials = preferenceParse('maxSpecials', 1);
 
@@ -351,6 +352,7 @@ function updateLocalStorage() {
     localStorage.cursorMax = FrozenCookies.cursorMax;
     localStorage.farmMax = FrozenCookies.farmMax;
     localStorage.grandmaMax = FrozenCookies.grandmaMax;
+    localStorage.javaMax = FrozenCookies.javaMax;
     localStorage.minCpSMult = FrozenCookies.minCpSMult;
     localStorage.frenzyTimes = JSON.stringify(FrozenCookies.frenzyTimes);
     //  localStorage.nonFrenzyTime = FrozenCookies.non_gc_time;
@@ -567,6 +569,23 @@ function updateGrandmaMax(base) {
     var newMax3 = getGrandmaMax(FrozenCookies[base]);
     if (newMax3 != FrozenCookies[base]) {
         FrozenCookies[base] = newMax3;
+        updateLocalStorage();
+        FCStart();
+    }
+}
+
+function getJavaMax(current) {
+    var newMax4 = prompt('How many Javas should Autobuy stop at?', current);
+    if (typeof(newMax4) == 'undefined' || newMax4 == null || isNaN(Number(newMax4)) || Number(newMax4 < 0)) {
+        newMax4 = current;
+    }
+    return Number(newMax4);
+}
+
+function updateJavaMax(base) {
+    var newMax4 = getJavaMax(FrozenCookies[base]);
+    if (newMax4 != FrozenCookies[base]) {
+        FrozenCookies[base] = newMax4;
         updateLocalStorage();
         FCStart();
     }
@@ -1313,6 +1332,15 @@ function recommendationList(recalculate) {
                 }
             }
         }
+	
+	if (FrozenCookies.javaLimit && Game.Objects['Javascript Console'].amount >= FrozenCookies.javaMax) {
+            for (var i = 0; i < FrozenCookies.caches.recommendationList.length; i++) {
+                if (FrozenCookies.caches.recommendationList[i].id == 16) {
+                    FrozenCookies.caches.recommendationList.splice(i, 1);
+                }
+            }
+        }    
+	    
         if (FrozenCookies.pastemode) {
             FrozenCookies.caches.recommendationList.reverse();
         }
