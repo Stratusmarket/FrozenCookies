@@ -78,7 +78,7 @@ FrozenCookies.preferenceValues = {
         'hint': 'Limit max number of java to keep Godzamok useful',
         'display': ['Javascript Console Limit OFF', 'Javascript Console Limit ON'],
         'default': 0,
-        'extras': '<a class="option" id="javaMax" onclick="updateJavaMax(\'JavaMax\');">${javaMax} javas</a>'
+        'extras': '<a class="option" id="javaMax" onclick="updateJavaMax(\'javaMax\');">${javaMax} javas</a>'
     },
     'towerLimit': {
         'hint': 'Stop autobuying Wizard Towers at selected Max Mana, for spellcasting efficiency',
