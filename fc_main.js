@@ -1333,7 +1333,7 @@ function recommendationList(recalculate) {
             }
         }
 	
-	if (FrozenCookies.javaLimit && Game.Objects['Javascript Console'].amount >= FrozenCookies.javaMax) {
+	if (FrozenCookies.javaLimit && Game.Objects['Javascript console'].amount >= FrozenCookies.javaMax) {
             for (var i = 0; i < FrozenCookies.caches.recommendationList.length; i++) {
                 if (FrozenCookies.caches.recommendationList[i].id == 16) {
                     FrozenCookies.caches.recommendationList.splice(i, 1);
